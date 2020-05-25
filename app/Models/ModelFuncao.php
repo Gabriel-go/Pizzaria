@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModelFuncao extends Model
 {
     protected $table = 'funcao';
+    protected $fillable = ['descricao'];
 
     public function relUsuario()
     {

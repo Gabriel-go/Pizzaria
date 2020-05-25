@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ModelFuncao;
-use App\Models\ModelUsuario;
 
-class UsuarioControler extends Controller
+class FuncaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,22 +13,19 @@ class UsuarioControler extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $objUsuario;
     private $objFuncao;
 
     public function __construct()
     {
-        $this->objUsuario=new ModelUsuario();
         $this->objFuncao=new ModelFuncao();
     }
 
     public function index()
     {
-        //dd($this->objFuncao->find(1)->relUsuario());
-        $usuario=$this->objUsuario->all();
-        return view('index',compact('usuario'));
+        //dd($this->objFuncao->all());
+        $func=$this->objFuncao->all();
+        return view('indexFunc',compact('func'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +35,7 @@ class UsuarioControler extends Controller
     public function create()
     {
         $funcaos=$this->objFuncao->all();
-        return view('create',compact('funcaos'));
+        return view('createfunc');
     }
 
     /**
@@ -50,14 +46,11 @@ class UsuarioControler extends Controller
      */
     public function store(Request $request)
     {
-        $cad=$this->objUsuario->create([
-            'nome'=>@$request->edt_nome,
-            'senha'=>@$request->edt_senha,
-            'email'=>@$request->edt_email,
-            'id_funcao'=>@$request->id_funcao,
+        $cad=$this->objFuncao->create([
+            'descricao'=>@$request->edt_descricao
         ]);
         if($cad){
-            return redirect('usuario');
+            return redirect('funcao');
         }
     }
 
@@ -69,8 +62,7 @@ class UsuarioControler extends Controller
      */
     public function show($id)
     {
-        $usuario=$this->objUsuario->find($id);
-        return view('show',compact('usuario'));
+        //
     }
 
     /**
@@ -81,10 +73,9 @@ class UsuarioControler extends Controller
      */
     public function edit($id)
     {
-        $usuario=$this->objUsuario->find($id);
-        $funcaos=$this->objFuncao->all();
-        return view('create',compact('usuario','funcaos'));
 
+        $func=$this->objFuncao->find($id);
+        return view('createFunc',compact('func'));
     }
 
     /**
@@ -96,13 +87,11 @@ class UsuarioControler extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->objUsuario->where(['id'=>$id])->update([
-            'nome'=>@$request->edt_nome,
-            'senha'=>@$request->edt_senha,
-            'email'=>@$request->edt_email,
-            'id_funcao'=>@$request->id_funcao
+        $this->objFuncao->where(['id'=>$id])->update([
+            'descricao'=>@$request->edt_descricao,
+            
         ]);
-        return redirect('usuario');
+        return redirect('funcao');
     }
 
     /**
@@ -113,6 +102,6 @@ class UsuarioControler extends Controller
      */
     public function destroy($id)
     {
-        $this->objUsuario->delete(['id'=>$id]);
+        //
     }
 }

@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/teste', 'UsuarioControler');
+Route::resource('/usuario', 'UsuarioControler');
+
+Route::resource('/funcao', 'FuncaoController');
+
+Route::resource('/adicional', 'AdicionalController');

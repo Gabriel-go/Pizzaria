@@ -1,9 +1,9 @@
 @extends('templates.templates')
 
 @section('content')
-    <h1 class="text-center">Crud Usuario</h1>
+    <h1 class="text-center">Crud Função</h1>
     <div class="text-center">
-        <a href="{{url('usuario/create')}}">
+        <a href="{{url('funcao/create')}}">
             <button class="btn btn-success">Novo</button>
         </a>
     </div>
@@ -19,16 +19,13 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($usuario as $usuarios)
+            @foreach($func as $funcoes)
                 <tr>
                     <td scope="col">#</td>
-                    <td scope="col">{{$usuarios->id}}</td>
-                    <td scope="col">{{$usuarios->nome}}</td>
+                    <td scope="col">{{$funcoes->id}}</td>
+                    <td scope="col">{{$funcoes->descricao}}</td>
                     <td scope="col">
-                        <a href="{{url("usuario/$usuarios->id")}}">
-                            <button class="btn btn-dark">Visualizar</button>
-                        </a>
-                        <a href="{{url("usuario/$usuarios->id/edit")}}">
+                        <a href="{{url("funcao/$funcoes->id/edit")}}">
                             <button class="btn btn-primary">Editar</button>
                         </a>
                         <a href="">
