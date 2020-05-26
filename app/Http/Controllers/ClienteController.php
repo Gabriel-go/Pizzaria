@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ModelCliente;
 use Illuminate\Http\Request;
-use App\Models\ModelFuncao;
 
-class FuncaoController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,18 +12,18 @@ class FuncaoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $objFuncao;
+    private $objCliente;
 
     public function __construct()
     {
-        $this->objFuncao=new ModelFuncao();
+        $this->objCliente=new ModelCliente();
     }
 
     public function index()
     {
         //dd($this->objFuncao->all());
-        $func=$this->objFuncao->all();
-        return view('indexFunc',compact('func'));
+        $cliente=$this->objCliente->all();
+        return view('indexCliente',compact('cliente'));
     }
 
     /**
@@ -34,8 +33,7 @@ class FuncaoController extends Controller
      */
     public function create()
     {
-        $funcaos=$this->objFuncao->all();
-        return view('createfunc');
+        return view('createCliente');
     }
 
     /**
@@ -46,11 +44,13 @@ class FuncaoController extends Controller
      */
     public function store(Request $request)
     {
-        $cad=$this->objFuncao->create([
-            'descricao'=>@$request->edt_descricao
+        $cad=$this->objCliente->create([
+            'email'=>@$request->edt_email,
+            'nome'=>@$request->edt_nome,
+            'dt_aniversario'=>@$request->edt_aniversario
         ]);
         if($cad){
-            return redirect('funcao');
+            return redirect('cliente');
         }
     }
 
@@ -62,7 +62,7 @@ class FuncaoController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,9 +73,8 @@ class FuncaoController extends Controller
      */
     public function edit($id)
     {
-
-        $func=$this->objFuncao->find($id);
-        return view('createFunc',compact('func'));
+        $cliente=$this->objCliente->find($id);
+        return view('createCliente',compact('cliente'));
     }
 
     /**
@@ -87,11 +86,7 @@ class FuncaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->objFuncao->where(['id'=>$id])->update([
-            'descricao'=>@$request->edt_descricao,
-            
-        ]);
-        return redirect('funcao');
+        //
     }
 
     /**
@@ -102,7 +97,6 @@ class FuncaoController extends Controller
      */
     public function destroy($id)
     {
-        $this->objFuncao->find($id)->delete();
-        return redirect('funcao');
+        //
     }
 }

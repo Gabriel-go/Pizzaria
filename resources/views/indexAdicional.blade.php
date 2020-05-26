@@ -30,7 +30,8 @@
                         <a href="{{url("adicional/$adc->id/edit")}}">
                             <button class="btn btn-primary">Editar</button>
                         </a>
-                        <a href="">
+                        <a href="{{url("deletarAdicional/$adc->id")}}">
+                       
                             <button class="btn btn-danger">Excluir</button>
                         </a>
                     </td>

@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Rotas para Usuario
 Route::resource('/usuario', 'UsuarioControler');
 
+//Rotas para funçao
 Route::resource('/funcao', 'FuncaoController');
+Route::get('/deletarFuncao/{id}', 'FuncaoController@destroy');
 
+//Rotas para adicional
 Route::resource('/adicional', 'AdicionalController');
+Route::get('/deletarAdicional/{id}', 'AdicionalController@destroy');
+
+//Rotas para adicional
+Route::resource('/cliente', 'ClienteController');

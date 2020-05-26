@@ -76,6 +76,12 @@ class AdicionalController extends Controller
         return view('createAdicional',compact('adicional'));
     }
 
+    public function delete()
+    {
+        //$adicional=$this->objAdicional->find(2);
+        return view('createAdicional');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -97,8 +103,9 @@ class AdicionalController extends Controller
      * @param  \App\Adicional  $adicional
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adicional $adicional)
+    public function destroy( $id)
     {
-        //
+        $adicional=$this->objAdicional->find($id)->delete();
+        return redirect('adicional');
     }
 }
