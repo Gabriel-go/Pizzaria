@@ -43,6 +43,8 @@
                 </div>
             </div>
         </div>
+        
+        
         <h2> Telefones </h2>
     <div class="col-8 m-auto text-center">
     <div class="text-center">
@@ -81,6 +83,49 @@
         </table>
 
     </div>
+
+    <h2> Endereços </h2>
+    <div class="col-8 m-auto text-center">
+    <div class="text-center">
+        <a href="{{url("clienteEnderecoCad/$cliente->id")}}">
+            <button class="btn btn-success">Novo Telefone</button>
+        </a>
+    </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Rua</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">acao</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            @foreach($clienteEndereco ?? '' as $cliend)
+           
+                <tr>
+                    <td scope="col">{{$cliend->id}}</td>
+                    <td scope="col">{{$cliend->rua}}</td>
+                    <td scope="col">{{$cliend->bairro}}</td>
+                    <td scope="col">
+                    <a href="{{url("clienteEndereco/$cliente->id/edit")}}">
+                            <button class="btn btn-primary">Editar</button>
+                        </a>
+                        <a href="{{url("deletarClienteEndereco/$cliente->id")}}">
+                       
+                            <button class="btn btn-danger">Excluir</button>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+
+        </table>
+
+    </div>
+
     </div>
 
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\ModelCliente;
 use App\Models\ModelClienteTelefone;
+use App\Models\ModelClienteEndereco;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -15,11 +16,13 @@ class ClienteController extends Controller
 
     private $objCliente;
     private $objClienteTelefone;
+    private $objClienteEndereco;
 
     public function __construct()
     {
         $this->objCliente=new ModelCliente();
         $this->objClienteTelefone=new ModelClienteTelefone();
+        $this->objClienteEndereco=new ModelClienteEndereco();
     }
 
     public function index()
@@ -81,9 +84,10 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {        
-        $cliente=$this->objCliente->find($id);
-        $clienteTel =$this->objClienteTelefone->where('id_cliente',$id)->get();
-        return view('createCliente',compact('cliente','clienteTel'));
+        $cliente         =$this->objCliente->find($id);
+        $clienteTel      =$this->objClienteTelefone->where('id_cliente',$id)->get();
+        $clienteEndereco =$this->objClienteEndereco->where('id_cliente',$id)->get();
+        return view('createCliente',compact('cliente','clienteTel','clienteEndereco'));
     }
 
     /**

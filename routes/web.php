@@ -31,4 +31,9 @@ Route::resource('/cliente', 'ClienteController');
 Route::resource('/clienteTelefone', 'ClienteTelefoneController');
 Route::get('/clienteFoneCad/{id}', 'ClienteTelefoneController@create');
 Route::get('/deletarClienteTelefone/{id}', 'ClienteTelefoneController@destroy');
+
+//Rotas para clientes telefone
+Route::resource('/clienteEndereco', 'ClienteEnderecoController');
+Route::get('/clienteEnderecoCad/{id}', 'ClienteEnderecoController@create');
+Route::get('/deletarClienteEndereco/{id}', 'ClienteEnderecoController@destroy');
            

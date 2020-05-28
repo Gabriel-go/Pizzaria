@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ModelClienteTelefone;
+use App\Models\ModelClienteEndereco;
 
-class ClienteTelefoneController extends Controller
+class ClienteEnderecoController extends Controller
 {
-    
-    private $objClienteTelefone;
-    private $este;
+    private $objClienteEndereco;
 
     public function __construct()
     {
-        $this->objClienteTelefone=new ModelClienteTelefone();
-        $this->este = 1;
+        $this->objClienteEndereco=new ModelClienteEndereco();
     }
     /**
      * Display a listing of the resource.
@@ -32,9 +29,8 @@ class ClienteTelefoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
-    {           
-        $this->este=$id;
-        return view('createClienteTelefone',compact('id'));
+    { 
+        return view('createClienteEndereco',compact('id'));
     }
 
     /**
@@ -45,8 +41,12 @@ class ClienteTelefoneController extends Controller
      */
     public function store(Request $request)
     {
-        $cad=$this->objClienteTelefone->create([
-            'telefone'=>@$request->edt_telefone,
+        $cad=$this->objClienteEndereco->create([
+            'rua'=>@$request->edt_rua,
+            'bairro'=>@$request->edt_bairro,
+            'numero'=>@$request->edt_numero,
+            'referencia'=>@$request->edt_referencia,
+            'complemento'=>@$request->edt_complemento,
             'id_cliente'=>@$request->edt_cliente,
         ]);
         if($cad){
@@ -73,9 +73,9 @@ class ClienteTelefoneController extends Controller
      */
     public function edit($id)
     {
-        $telefone=$this->objClienteTelefone->find($id);
-        $id=$telefone->id_cliente;                
-        return view('createClienteTelefone',compact('telefone','id'));
+        $endereco=$this->objClienteEndereco->find($id);
+        $id=$endereco->id_cliente;                
+        return view('createClienteEndereco',compact('endereco','id'));
     }
 
     /**
@@ -86,9 +86,13 @@ class ClienteTelefoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {         
-        $cad=$this->objClienteTelefone->where(['id'=>$id])->update([
-            'telefone'=>@$request->edt_telefone,     
+    {
+        $cad=$this->objClienteEndereco->where(['id'=>$id])->update([
+            'rua'=>@$request->edt_rua,   
+            'complemento'=>@$request->edt_complemento,   
+            'referencia'=>@$request->edt_referencia,   
+            'bairro'=>@$request->edt_bairro,   
+            'numero'=>@$request->edt_numero,     
             'id_cliente'=>@$request->edt_cliente,       
         ]);
         if($cad){
@@ -104,10 +108,9 @@ class ClienteTelefoneController extends Controller
      */
     public function destroy($id)
     {
-        $cad=$this->objClienteTelefone->find($id);
+        $cad=$this->objClienteEndereco->find($id);
         $idCli=$cad->id_cliente;        
         $cad->delete();
         return redirect("cliente/{$idCli}/edit");
-        
     }
 }
