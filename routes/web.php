@@ -24,5 +24,11 @@ Route::get('/deletarFuncao/{id}', 'FuncaoController@destroy');
 Route::resource('/adicional', 'AdicionalController');
 Route::get('/deletarAdicional/{id}', 'AdicionalController@destroy');
 
-//Rotas para adicional
+//Rotas para clientes
 Route::resource('/cliente', 'ClienteController');
+
+//Rotas para clientes telefone
+Route::resource('/clienteTelefone', 'ClienteTelefoneController');
+Route::get('/clienteFoneCad/{id}', 'ClienteTelefoneController@create');
+Route::get('/deletarClienteTelefone/{id}', 'ClienteTelefoneController@destroy');
+           

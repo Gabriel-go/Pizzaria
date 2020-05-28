@@ -45,6 +45,11 @@
         </div>
         <h2> Telefones </h2>
     <div class="col-8 m-auto text-center">
+    <div class="text-center">
+        <a href="{{url("clienteFoneCad/$cliente->id")}}">
+            <button class="btn btn-success">Novo Telefone</button>
+        </a>
+    </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -54,21 +59,22 @@
                 </tr>
             </thead>
             <tbody>
-            foreach(cliente as cli)
+            @foreach($clienteTel as $clitef)
+           
                 <tr>
-                    <td scope="col">cli->id}}</td>
-                    <td scope="col">cli->nome}}</td>
+                    <td scope="col">{{$clitef->id}}</td>
+                    <td scope="col">{{$clitef->telefone}}</td>
                     <td scope="col">
-                        <a href="">
+                    <a href="{{url("clienteTelefone/$clitef->id/edit")}}">
                             <button class="btn btn-primary">Editar</button>
                         </a>
-                        <a href="">
+                        <a href="{{url("deletarClienteTelefone/$clitef->id")}}">
                        
                             <button class="btn btn-danger">Excluir</button>
                         </a>
                     </td>
                 </tr>
-            endforeach
+            @endforeach
 
             </tbody>
 

@@ -76,12 +76,6 @@ class AdicionalController extends Controller
         return view('createAdicional',compact('adicional'));
     }
 
-    public function delete()
-    {
-        //$adicional=$this->objAdicional->find(2);
-        return view('createAdicional');
-    }
-
     /**
      * Update the specified resource in storage.
      *

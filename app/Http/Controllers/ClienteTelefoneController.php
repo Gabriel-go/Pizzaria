@@ -1,32 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ModelCliente;
-use App\Models\ModelClienteTelefone;
-use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+use Illuminate\Http\Request;
+use App\Models\ModelClienteTelefone;
+
+class ClienteTelefoneController extends Controller
 {
+    
+    private $objClienteTelefone;
+    private $este;
+
+    public function __construct()
+    {
+        $this->objClienteTelefone=new ModelClienteTelefone();
+        $this->este = 1;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    private $objCliente;
-    private $objClienteTelefone;
-
-    public function __construct()
-    {
-        $this->objCliente=new ModelCliente();
-        $this->objClienteTelefone=new ModelClienteTelefone();
-    }
-
     public function index()
     {
-        //dd($this->objFuncao->all());
-        $cliente=$this->objCliente->all();
-        return view('indexCliente',compact('cliente'));
+        //
     }
 
     /**
@@ -34,9 +31,12 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('createCliente');
+    public function create($id)
+    {           
+        $this->este=$id;
+        //$cliente=$this->objCliente->all();
+        echo($this->este);
+        return view('createClienteTelefone',compact('id'));
     }
 
     /**
@@ -47,19 +47,13 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $cad=$this->objCliente->create([
-            'email'=>@$request->edt_email,
-            'nome'=>@$request->edt_nome,
-            'dt_aniversario'=>@$request->edt_aniversario
+        $cad=$this->objClienteTelefone->create([
+            'telefone'=>@$request->edt_telefone,
+            'id_cliente'=>@$request->edt_cliente,
         ]);
         if($cad){
-            return redirect('cliente');
+            return redirect("cliente/{$cad->id_cliente}/edit");
         }
-    }
-
-    public function storeTelefone(Request $request)
-    {
-        return redirect('cliente');
     }
 
     /**
@@ -70,7 +64,7 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -80,10 +74,10 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        
-        $cliente=$this->objCliente->find($id);
-        $clienteTel =$this->objClienteTelefone->where('id_cliente',$id)->get();
-        return view('createCliente',compact('cliente','clienteTel'));
+    {
+        $telefone=$this->objClienteTelefone->find($id);
+        $id=$telefone->id_cliente;                
+        return view('createClienteTelefone',compact('telefone','id'));
     }
 
     /**
@@ -94,8 +88,14 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {         
+        $cad=$this->objClienteTelefone->where(['id'=>$id])->update([
+            'telefone'=>@$request->edt_telefone,     
+            'id_cliente'=>@$request->edt_cliente,       
+        ]);
+        if($cad){
+            return redirect("cliente/{$request->edt_cliente}/edit");
+        }
     }
 
     /**
@@ -106,6 +106,10 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cad=$this->objClienteTelefone->find($id);
+        $idCli=$cad->id_cliente;        
+        $cad->delete();
+        return redirect("cliente/{$idCli}/edit");
+        
     }
 }
