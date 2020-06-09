@@ -13,11 +13,10 @@
                     </h1>
                     @if(isset($cliente)) 
                         <form method="post" name="formEdit" id="formEdit" action="{{url("cliente/$cliente->id")}}">
-                        
                         @method('PUT')
                        
                     @else 
-                        <form method="post" name="formCad" id="formCad" action="{{url('cliente')}}">
+                        <form method="post" name="formCad" id="formCad" action="{{url("cliente")}}">
                     @endif
                         @csrf
                         <div class="form-row"> 
@@ -48,36 +47,39 @@
         <h2> Telefones </h2>
     <div class="col-8 m-auto text-center">
     <div class="text-center">
-        <a href="{{url("clienteFoneCad/$cliente->id")}}">
-            <button class="btn btn-success">Novo Telefone</button>
-        </a>
+        @if(isset($cliente))
+            <a href="{{url("clienteFoneCad/$cliente->id")}}">
+                <button class="btn btn-success">Novo Telefone</button>
+            </a>
+        @endif
     </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Telefone</th>
-                    <th scope="col">acao</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($clienteTel as $clitef)
-           
-                <tr>
-                    <td scope="col">{{$clitef->id}}</td>
-                    <td scope="col">{{$clitef->telefone}}</td>
-                    <td scope="col">
-                    <a href="{{url("clienteTelefone/$clitef->id/edit")}}">
-                            <button class="btn btn-primary">Editar</button>
-                        </a>
-                        <a href="{{url("deletarClienteTelefone/$clitef->id")}}">
-                       
-                            <button class="btn btn-danger">Excluir</button>
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-
+            @if(isset($clienteTel)) 
+                @foreach($clienteTel as $clitef)
+            
+                    <tr>
+                        <td scope="col">{{$clitef->id}}</td>
+                        <td scope="col">{{$clitef->telefone}}</td>
+                        <td scope="col">
+                        <a href="{{url("clienteTelefone/$clitef->id/edit")}}">
+                                <button class="btn btn-primary">Editar</button>
+                            </a>
+                            <a href="{{url("deletarClienteTelefone/$clitef->id")}}">
+                        
+                                <button class="btn btn-danger">Excluir</button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
             </tbody>
 
         </table>
@@ -87,9 +89,11 @@
     <h2> Endereços </h2>
     <div class="col-8 m-auto text-center">
     <div class="text-center">
+        @if(isset($cliente)) 
         <a href="{{url("clienteEnderecoCad/$cliente->id")}}">
-            <button class="btn btn-success">Novo Telefone</button>
-        </a>
+            <button class="btn btn-success">Novo Endereço</button>
+        </a> 
+        @endif
     </div>
         <table class="table">
             <thead class="thead-dark">
@@ -97,12 +101,12 @@
                     <th scope="col">Id</th>
                     <th scope="col">Rua</th>
                     <th scope="col">Bairro</th>
-                    <th scope="col">acao</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
-            
-            @foreach($clienteEndereco ?? '' as $cliend)
+            @if(isset($clienteTel)) 
+            @foreach($clienteEndereco as $cliend)
            
                 <tr>
                     <td scope="col">{{$cliend->id}}</td>
@@ -119,7 +123,7 @@
                     </td>
                 </tr>
             @endforeach
-
+            @endif    
             </tbody>
 
         </table>

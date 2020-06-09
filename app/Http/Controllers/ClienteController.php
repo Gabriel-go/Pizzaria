@@ -99,7 +99,12 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->objCliente->where(['id'=>$id])->update([
+            'email'=>@$request->edt_email,
+            'nome'=>@$request->edt_nome,
+            'dt_aniversario'=>@$request->edt_aniversario          
+        ]);
+        return redirect('cliente');
     }
 
     /**

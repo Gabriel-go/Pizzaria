@@ -1,7 +1,7 @@
 @extends('templates.templates')
 
 @section('content')
-    <h1 class="text-center">Crud Função</h1>
+    <h1 class="text-center">Tela dos Adicionais</h1>
     <div class="text-center">
         <a href="{{url('adicional/create')}}">
             <button class="btn btn-success">Novo</button>
@@ -16,7 +16,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
-                    <th scope="col">acao</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>

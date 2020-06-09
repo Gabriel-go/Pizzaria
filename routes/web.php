@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Rotas para Usuario
+Route::get('/', function(){
+    return view('home');
+});
+
+//Rotas para Usuario
 Route::resource('/usuario', 'UsuarioControler');
 
 //Rotas para funçao

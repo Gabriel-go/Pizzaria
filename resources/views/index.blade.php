@@ -1,7 +1,7 @@
 @extends('templates.templates')
 
 @section('content')
-    <h1 class="text-center">Crud Usuario</h1>
+    <h1 class="text-center">Tela dos Usuarios</h1>
     <div class="text-center">
         <a href="{{url('usuario/create')}}">
             <button class="btn btn-success">Novo</button>
