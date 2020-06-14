@@ -18,8 +18,12 @@ Route::get('/', function(){
     return view('home');
 });
 
+Route::get('/sessao', 'SessionController@Session');
+
 //Rotas para Usuario
 Route::resource('/usuario', 'UsuarioControler');
+Route::get('/login', 'UsuarioControler@login');
+Route::get('/logar', 'UsuarioControler@logar');
 
 //Rotas para funçao
 Route::resource('/funcao', 'FuncaoController');
@@ -41,4 +45,8 @@ Route::get('/deletarClienteTelefone/{id}', 'ClienteTelefoneController@destroy');
 Route::resource('/clienteEndereco', 'ClienteEnderecoController');
 Route::get('/clienteEnderecoCad/{id}', 'ClienteEnderecoController@create');
 Route::get('/deletarClienteEndereco/{id}', 'ClienteEnderecoController@destroy');
+
+//Rotas para Pizza
+Route::resource('/pizza', 'PizzaController');
+Route::get('/deletarPizza/{id}', 'PizzaController@destroy');
            

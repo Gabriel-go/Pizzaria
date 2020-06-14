@@ -21,14 +21,18 @@
                 <a class="nav-link text-white" href="{{url("cliente")}}">Cad. Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{{url("cliente")}}">Cad. Produtos</a>
+                <a class="nav-link text-white" href="{{url("pizza")}}">Cad. Pizzas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{url("adicional")}}">Cad. Adicionais</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{{url("cliente")}}">Cad. Pedidos</a>
+                <a class="nav-link text-white" href="{{url("adicional")}}">Cad. Acompanhamentos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{url("pedido")}}">Cad. Pedidos</a>
+            </li>
+            
         </ul>
 
         <ul class="navbar-nav ml-auto">

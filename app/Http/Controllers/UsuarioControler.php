@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ModelFuncao;
 use App\Models\ModelUsuario;
+use App\Http\Controllers\SessionController;
+use Illuminate\Support\Facades\Session;
 
 class UsuarioControler extends Controller
 {
@@ -16,11 +18,13 @@ class UsuarioControler extends Controller
 
     private $objUsuario;
     private $objFuncao;
+    private $objSession;
 
     public function __construct()
     {
         $this->objUsuario=new ModelUsuario();
         $this->objFuncao=new ModelFuncao();
+        $this->objSession=new SessionController();
     }
 
     public function index()
@@ -30,6 +34,29 @@ class UsuarioControler extends Controller
         return view('index',compact('usuario'));
     }
 
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function logar(Request $request)
+    {
+        $usuario=$this->objUsuario->where([
+            'email'=>@$request->edt_email,
+            'senha'=>@$request->edt_senha
+        ])->get();
+        if(count($usuario) > 0){
+            $obj=$usuario[0];
+            //criando minha sessao
+            $this->objSession->session($obj);
+            return view('home');          
+            
+        }
+        else{ 
+            return view('login');
+        }
+            
+    }
 
     /**
      * Show the form for creating a new resource.
