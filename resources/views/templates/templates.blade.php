@@ -26,29 +26,17 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{url("adicional")}}">Cad. Adicionais</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{{url("adicional")}}">Cad. Acompanhamentos</a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{url("pedido")}}">Cad. Pedidos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{url("usuario")}}">Cad. Usuarios</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{url("funcao")}}">Cad. Funções</a>
+            </li>
             
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navDrop">
-              Manutenção Usuarios
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Cad. Usuario</a>
-              <a class="dropdown-item" href="#">Cad. Função</a>
-              <a class="dropdown-item" href="#">Sair</a>
-            </div>
-          </li>
         </ul>
         
 
