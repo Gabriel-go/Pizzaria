@@ -29,9 +29,15 @@ class UsuarioControler extends Controller
 
     public function index()
     {
-        //dd($this->objFuncao->find(1)->relUsuario());
-        $usuario=$this->objUsuario->all();
-        return view('index',compact('usuario'));
+
+        if (Session::get('id')>0){
+            //dd($this->objFuncao->find(1)->relUsuario());
+            $usuario=$this->objUsuario->all();
+            return view('index',compact('usuario'));
+        }else{
+            return view('login');    
+        
+        }
     }
 
     public function login()
@@ -50,7 +56,6 @@ class UsuarioControler extends Controller
             //criando minha sessao
             $this->objSession->session($obj);
             return view('home');          
-            
         }
         else{ 
             return view('login');

@@ -49,4 +49,18 @@ Route::get('/deletarClienteEndereco/{id}', 'ClienteEnderecoController@destroy');
 //Rotas para Pizza
 Route::resource('/pizza', 'PizzaController');
 Route::get('/deletarPizza/{id}', 'PizzaController@destroy');
+
+//Rotas para Pedido
+Route::resource('/pedido', 'PedidoController');
+Route::get('/novaSit/{id}', 'PedidoController@updateSituacao');
+
+//Rotas para PedidoItem
+Route::resource('/pedidoItem', 'PedidoItemController');
+Route::get('/pedidoItemNovo/{id}', 'PedidoItemController@create');
+Route::get('/deletarPedidoItem/{id}', 'PedidoItemController@destroy');
+
+
+
+//Rotas para AdicionalItem
+Route::resource('/adicionalItem', 'AdicionalItemController');
            

@@ -1,19 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ModelPizza;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class PizzaController extends Controller
+class AdicionalItemController extends Controller
 {
-    private $objPizza;
-
-    public function __construct()
-    {
-        $this->objPizza=new ModelPizza();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,15 +14,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        if (Session::get('id')>0){
-            $pizza=$this->objPizza->all();
-            return view('indexPizza',compact('pizza'));
-        }else{
-            return view('login');    
-        
-        }
+        //
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +24,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        return view('createPizza');
+        //
     }
 
     /**
@@ -47,13 +33,15 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $cad=$this->objPizza->create([
-            'descricao'=>@$request->edt_descricao,
-            'ingredientes'=>@$request->edt_ingredientes
+    public function store(Request $request, $id)
+    {
+        $cad=$this->objPedidoItem->create([
+            'quantidade_adicional'=>@$request->edt_quantidade_adicional,
+            'preco_adicional'=>@$request->edt_preco_adicional,
+            'id_pedido_item'=>$id
         ]);
         if($cad){
-            return redirect('pizza');
+            echo($cad);
         }
     }
 
@@ -76,8 +64,7 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        $pizza=$this->objPizza->find($id);
-        return view('createPizza',compact('pizza'));
+        //
     }
 
     /**
@@ -89,11 +76,7 @@ class PizzaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->objPizza->where(['id'=>$id])->update([
-            'descricao'=>@$request->edt_descricao,
-            'ingredientes'=>@$request->edt_ingredientes,            
-        ]);
-        return redirect('pizza');
+        //
     }
 
     /**
@@ -104,7 +87,6 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        $pizza=$this->objPizza->find($id)->delete();
-        return redirect('pizza');
+        //
     }
 }

@@ -32,6 +32,9 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{url("pedido")}}">Cad. Pedidos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{url("usuario")}}">Cad. Usuarios</a>
+            </li>
             
         </ul>
 

@@ -13,6 +13,5 @@ class SessionController extends Controller
         Session::put('nome',$objUsuario->nome);
         Session::put('email',$objUsuario->email);
         Session::put('id_funcao',$objUsuario->id_funcao);
-        
     }
 }

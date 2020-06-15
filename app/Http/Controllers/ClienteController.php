@@ -5,6 +5,7 @@ use App\Models\ModelCliente;
 use App\Models\ModelClienteTelefone;
 use App\Models\ModelClienteEndereco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ClienteController extends Controller
 {
@@ -28,8 +29,13 @@ class ClienteController extends Controller
     public function index()
     {
         //dd($this->objFuncao->all());
-        $cliente=$this->objCliente->all();
-        return view('indexCliente',compact('cliente'));
+        if (Session::get('id')>0){
+            $cliente=$this->objCliente->all();
+            return view('indexCliente',compact('cliente'));
+        }else{
+            return view('login');    
+        
+        }
     }
 
     /**

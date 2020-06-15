@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelAdicional;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdicionalController extends Controller
 {
@@ -21,9 +22,13 @@ class AdicionalController extends Controller
 
     public function index()
     {
-        //dd($this->objFuncao->all());
-        $adicional=$this->objAdicional->all();
-        return view('indexAdicional',compact('adicional'));
+        if (Session::get('id')>0){
+            //dd($this->objFuncao->all());
+            $adicional=$this->objAdicional->all();
+            return view('indexAdicional',compact('adicional'));
+        }else{
+            return view('login');    
+        }
     }
 
     /**

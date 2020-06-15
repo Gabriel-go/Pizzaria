@@ -46,6 +46,7 @@
         
         <h2> Telefones </h2>
     <div class="col-8 m-auto text-center">
+    
     <div class="text-center">
         @if(isset($cliente))
             <a href="{{url("clienteFoneCad/$cliente->id")}}">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ModelFuncao;
+use Illuminate\Support\Facades\Session;
 
 class FuncaoController extends Controller
 {
@@ -22,9 +23,14 @@ class FuncaoController extends Controller
 
     public function index()
     {
-        //dd($this->objFuncao->all());
-        $func=$this->objFuncao->all();
-        return view('indexFunc',compact('func'));
+        if (Session::get('id')>0){
+            //dd($this->objFuncao->all());
+            $func=$this->objFuncao->all();
+            return view('indexFunc',compact('func'));
+        }else{
+            return view('login');    
+        
+        }
     }
 
     /**

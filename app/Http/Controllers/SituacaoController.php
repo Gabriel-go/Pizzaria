@@ -1,35 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ModelPizza;
+
 use Illuminate\Http\Request;
+use App\Models\ModelSituacao;
 use Illuminate\Support\Facades\Session;
 
-class PizzaController extends Controller
+class SituacaoController extends Controller
 {
-    private $objPizza;
-
-    public function __construct()
-    {
-        $this->objPizza=new ModelPizza();
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    private $objSituacao;
+    
+    public function __construct()
+    {
+        $this->objSituacao=new ModelSituacao();
+    }
     public function index()
     {
-        if (Session::get('id')>0){
-            $pizza=$this->objPizza->all();
-            return view('indexPizza',compact('pizza'));
-        }else{
-            return view('login');    
-        
-        }
+        //
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +31,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        return view('createPizza');
+        //
     }
 
     /**
@@ -48,12 +41,25 @@ class PizzaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $cad=$this->objPizza->create([
-            'descricao'=>@$request->edt_descricao,
-            'ingredientes'=>@$request->edt_ingredientes
-        ]);
-        if($cad){
-            return redirect('pizza');
+    {
+        //
+    }
+
+    public function novaSituacao($codSituacao,$codPedido,$codCliente)
+    {
+        if (Session::get('id')>0){
+            date_default_timezone_set('America/Sao_Paulo');
+            
+            $cad=$this->objSituacao->create([
+                'id_usuario'=>Session::get('id'),
+                'id_pedido'=>$codPedido,
+                'dt_evento'=> date('d/m/y'),
+                'hr_evento'=> date('h:i:s'),
+                'tipo_evento'=>$codSituacao
+            ]);
+        }
+        else{
+            return redirect('login');
         }
     }
 
@@ -76,8 +82,7 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        $pizza=$this->objPizza->find($id);
-        return view('createPizza',compact('pizza'));
+        //
     }
 
     /**
@@ -89,11 +94,7 @@ class PizzaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->objPizza->where(['id'=>$id])->update([
-            'descricao'=>@$request->edt_descricao,
-            'ingredientes'=>@$request->edt_ingredientes,            
-        ]);
-        return redirect('pizza');
+        //
     }
 
     /**
@@ -104,7 +105,6 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        $pizza=$this->objPizza->find($id)->delete();
-        return redirect('pizza');
+        //
     }
 }
