@@ -58,71 +58,14 @@
                             </div>
 
                         </div>
-                        @if(! isset($pedidoitem)) 
+                        
                             <input type="submit" class="btn btn-primary col-md-5" value="Grava Sabor" >
-                        @endif    
+                       
                         
 
                     </form>
 
-                    @if(isset($pedidoitem))
-                        <div class="text-center m-1">                            
-                            <a href="{{url("pedidoItemNovo/$pedidoitem->id")}}">
-                                <button class="btn btn-success col-md-5">Novo Item</button>
-                            </a>                            
-                        </div>
-
-                        <form method="post" name="formAdc" id="formAdc" action="{{url('adicionalItem')}}">
-                                   
-                            @csrf
-                            <div class="form-group col-md-12">
-                                <label for="form17">Adicional</label>
-                                <select class="form-control" name="id_pizza1" id="id_pizza1">
-                                    <option value="">Selecione</option>
-                                    @foreach($adicional as $adc)
-                                        <option value="{{$adc->id}}">{{$adc->descricao}}</option>
-                                    @endforeach
-                                </select>        
-                                                             
-                            </div>
-                            
-                            <input type="submit" class="btn btn-primary col-md-2 mb-1" value="ADD" >     
-                                   
-                        </form>
-                        
-                        <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Detalhe</th>
-                                        <th scope="col">Ação</th>
-                                    </tr>
-                                </thead>
-                            <tbody>
-                                @if(isset($adicionalItem)) 
-                                    @foreach($adicionalItem as $adci)                                
-                                        <tr>
-                                            <td scope="col">{{$adci->id}}</td>
-                                            <td scope="col">
-                                                QTD: {{$adci->id}} 
-                                                Tam: {{$adci->descricao}}
-                                                Preço: {{$adci->preco}}
-                                            </td>
-                                            <td scope="col">
-                                                <a href="{{url("deletarAdicionalItem/$adci->id")}}">                                            
-                                                    <button class="btn btn-danger">Excluir</button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>      
-                        <a href="{{url("pedido")}}">
-                            <button class="btn btn-danger col-md-5 m-1">Fechar Pizza</button>
-                        </a>                   
-                        
-                    @endif
+                   
                     
                 </div>
             </div>

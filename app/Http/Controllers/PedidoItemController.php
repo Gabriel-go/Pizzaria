@@ -59,7 +59,8 @@ class PedidoItemController extends Controller
     public function store(Request $request)
     {
         $preco= $this->calculaPreco( @$request->id_tamanho,@$request->edt_quantidade);
-         $cad=$this->objPedidoItem->create([
+        
+        $cad=$this->objPedidoItem->create([
             'id_pizza1'=>@$request->id_pizza1,
             'id_pizza2'=>@$request->id_pizza2,
             'quantidade'=>@$request->edt_quantidade,
@@ -77,9 +78,11 @@ class PedidoItemController extends Controller
             */
             $pedidoitem=$this->objPedidoItem->find($cad->id);
             $pizza=$this->objPizza->all();
-            $adicionalItem=$this->objAdicionalItem->all();
-            $adicional=$this->objAdicional->all();
-            return view('createPedidoitem',compact('pedidoitem','pizza','adicionalItem','adicional'));
+           // $adicionalItem=$this->objAdicionalItem->all();
+           // $adicional=$this->objAdicional->all();
+           // return view('createPedidoitem',compact('pedidoitem','pizza'));
+           //return view('pedido/@$request->edt_ref/edit');
+           return redirect("pedido/{$request->edt_ref}/edit");
 
         }
     }
